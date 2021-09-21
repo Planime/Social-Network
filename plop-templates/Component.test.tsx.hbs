@@ -1,0 +1,10 @@
+import React from 'react';
+import {{pascalCase name}} from './{{pascalCase name}}';
+import { render } from '@testing-library/react';
+
+describe('{{pascalCase name}}', () => {
+it('renders without error', () => {
+const { baseElement } = render(<{{pascalCase name}} />);
+expect(baseElement).toBeDefined();
+});
+});
