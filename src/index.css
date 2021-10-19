@@ -54,3 +54,32 @@ code {
 .headlighted_left_tab{
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.header_left_space{
+  background-color: #3f51b5;
+}
+
+.MuiDrawer-paperAnchorDockedLeft{
+  border-right: 1px solid #3f51b5 !important;
+}
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary.makeStyles-appBar-12.mui-fixed.MuiPaper-elevation4{
+  box-shadow: none !important;
+}
+
+.card{
+  width: 100px;
+
+}
+
+img {
+  max-width: 100%;
+}
+
+.card_wrap{
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  padding: 5px 5px;
+  display: flex;
+}

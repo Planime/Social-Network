@@ -19,6 +19,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Header} from "../index"
+import Routes from "./../../pages/routes/Routes"
 
 const drawerWidth = 240;
 
@@ -74,7 +75,9 @@ function LeftNavBar(props) {
 
     const drawer = (
         <div>
-            <div className={classes.toolbar}>here</div>
+            <div className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters header_left_space">
+                Name will be here
+            </div>
 
             <Divider/>
             <List>
@@ -192,12 +195,11 @@ function LeftNavBar(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar}/>
                 <Typography paragraph>
-                    no content
+                    <Routes/>
                 </Typography>
             </main>
         </div>
     );
 }
-
 
 export default LeftNavBar;
