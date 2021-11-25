@@ -1,4 +1,7 @@
 /* PLOP_INJECT_IMPORT */
+import Authentication from './authentication/Authentication';
+import NotificationMessages from './notification-messages/NotificationMessages';
+import EditMyProfile from './editMyProfile/EditMyProfile';
 import Videos from './videos/Videos';
 import Photos from './photos/Photos';
 import Messages from './messages/Messages';
@@ -11,6 +14,9 @@ import Main from './main/Main';
 
 export {
     /* PLOP_INJECT_EXPORT */
+	Authentication,
+	NotificationMessages,
+	EditMyProfile,
 	Videos,
 	Photos,
 	Messages,

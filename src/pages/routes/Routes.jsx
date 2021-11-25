@@ -1,10 +1,7 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom"
-import Profile from "../profile/Profile"
-import Friends from "../friends/Friends"
-import Messages from "../messages/Messages"
-import Photos from "../photos/Photos"
-import Videos from "../videos/Videos"
+import {EditMyProfile, Profile, Friends,
+    Messages, Photos, Videos} from "../../pages"
 
 
 import styles from './Routes.module.scss';
@@ -15,7 +12,8 @@ const Routes = () => {
 
   return (
       <Switch>
-          <Route path="/profile"><Profile/></Route>
+          <Route exact path="/profile"><Profile/></Route>
+          <Route path="/profile/edit"><EditMyProfile/></Route>
           <Route path="/friends/:id?"><Friends/></Route>
           <Route path="/messages"><Messages/></Route>
           <Route path="/photos"><Photos/></Route>

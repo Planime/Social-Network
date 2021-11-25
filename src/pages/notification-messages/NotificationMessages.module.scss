@@ -1,0 +1,9 @@
+@import '../../assets/scss/app-variables';
+
+.notificationMessagesAlert {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  max-width: 250px;
+  z-index: 10000;
+}

@@ -117,7 +117,7 @@ function LeftNavBar(props) {
             <Divider/>
             <List>
                 <NavLink
-                    to='/messages'>
+                    to='/photos'>
                     <ListItem
                         selected={pathname === '/photos'}
                         button>
@@ -127,7 +127,7 @@ function LeftNavBar(props) {
                 </NavLink>
 
                 <NavLink
-                    to='/messages'>
+                    to='/videos'>
                     <ListItem
                         selected={pathname === '/videos'}
                         button>
