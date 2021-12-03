@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
-import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
+import Typography from "@mui/material/Typography";
+import makeStyles from '@mui/styles/makeStyles';
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Chip from "@mui/material/Chip";
 
-const useStyles = makeStyles((theme) => ({
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main
-    },
+const useStyles = makeStyles(() => ({
+    // avatar: {
+    //     margin: theme.spacing(1),
+    //     backgroundColor: theme.palette.secondary.main
+    // },
     profileImage: {
         width: "20%",
         borderRadius: "100%"
@@ -61,7 +61,7 @@ export default function FriendInfo({id}) {
                     <Button variant="outlined" color="primary" fullWidth>
                         Send Message
                     </Button>
-                    <Grid container justify="space-between">
+                    <Grid container justifyContent="space-between">
                         <Grid item>
                             <p>Friends</p>
                         </Grid>

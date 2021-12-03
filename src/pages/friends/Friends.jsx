@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import {Link, useRouteMatch} from "react-router-dom";
 import {FriendInfo} from "../../components"
 import contacts from "./contacs"
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
 
 
-const useStyles = makeStyles((theme) => ({
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main
-    },
+const useStyles = makeStyles(() => ({
+    // avatar: {
+    //     margin: theme.spacing(1),
+    //     backgroundColor: theme.palette.secondary.main
+    // },
     profileImage: {
         width: "20%",
         borderRadius: "100%"
@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 650,
     },
     large: {
-        width: theme.spacing(10),
-        height: theme.spacing(10),
+        // width: theme.spacing(10),
+        // height: theme.spacing(10),
     },
 }));
 

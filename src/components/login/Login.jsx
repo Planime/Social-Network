@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {Formik, Field, Form} from 'formik';
 import * as Yup from 'yup';
 import {TextField} from 'formik-material-ui';
-import {Button, LinearProgress, CircularProgress} from '@material-ui/core';
+import {Button, LinearProgress, CircularProgress} from '@mui/material';
 // import qaLogo from '../../../assets/images/qaLogo.jpeg';
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@mui/icons-material/Send';
 // import loginAPI from './login.api';
 // import { encrypt } from '../../../helpers/crypto/crypto';
 
@@ -29,45 +29,11 @@ export default function Login() {
 
     const onSubmitHandler = async () => {
         console.log("onSubmitHandler")
-
-        // try {
-        //
-        //     setIsFetching(true);
-        //     const { email, password } = values;
-        //     let responseServer = await loginAPI(email, password);
-        //
-        //     responseServer = await JSON.parse(responseServer)
-        //     responseServer = await JSON.parse(responseServer)
-        //
-        //     sessionStorage.setItem('authToken', encrypt(responseServer.authToken, secret));
-        //     sessionStorage.setItem('injectorLogin', encrypt(responseServer.injectorLogin, secret));
-        //     sessionStorage.setItem('injectorApiPass', encrypt(responseServer.injectorApiPass, secret));
-        //     sessionStorage.setItem('isAdminUser', encrypt(responseServer.isAdminUser, secret));
-        //
-        //     setAuthToken(responseServer.authToken);
-        //     setIsFetching(false);
-        //
-        //
-        // } catch (error) {
-        //     setModalMessage({
-        //         msg: 'Invalid login and/or password',
-        //         status: 404,
-        //     });
-        //
-        //
-        //     setOpen(true);
-        //     setSubmitting(false);
-        //     setIsFetching(false);
-        //
-        // }
-
     };
 
-    // const [open, setOpen] = React.useState(false);
-    // const handleClose = () => setOpen(false);
 
     return (
-        <div style={{margin: '150px'}}>
+        <div style={{margin: '15px 0'}}>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -126,8 +92,6 @@ export default function Login() {
                     </Form>
                 )}
             />
-
-
         </div>
     );
 }

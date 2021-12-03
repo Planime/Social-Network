@@ -1,32 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {Header, LeftNavBar} from "../../components";
-import {NotificationMessages} from "../../pages";
+import {
+    Authentication,
+    NotificationMessages
+} from "../../pages";
 import {NotificationContext} from "../../context/notificationContext";
+import {useCookies} from 'react-cookie';
 
 import styles from './Main.module.scss';
 
 
 const Main = () => {
 
-    const [notificationMessages, setNotificationMessages] = useState({});
-    const [isShowNotificationMessages, setIsShowNotificationMessages] = useState(false);
+    const [isLogIn, setIsLogIn] = useState(false);
+    const [cookies, setCookie] = useCookies();
 
-    useEffect(() => {
-        if (notificationMessages.type) {
-            setIsShowNotificationMessages(true);
-            setTimeout(() => {
-                setIsShowNotificationMessages(false)
-            }, 4000)
-        }
+    console.log(cookies.token, "cookies")
 
-    }, [notificationMessages]);
+    useLayoutEffect(() => {
+        setIsLogIn(!!cookies.token);
+    })
 
     return (
-        <NotificationContext.Provider value={{notificationMessages, setNotificationMessages}}>
-            <Header/>
-            <LeftNavBar/>
-            {isShowNotificationMessages && <NotificationMessages/>}
-        </NotificationContext.Provider>
+        <>
+            {
+                isLogIn ? <LeftNavBar/> : <Authentication/>
+            }
+
+        </>
+
+
     );
 };
 

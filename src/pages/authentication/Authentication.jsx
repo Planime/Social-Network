@@ -1,17 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import {Login, Registration} from "../../components";
+import styles from './Authentication.module.scss';
 
-const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
-});
 
-export default function CenteredTabs() {
-    const classes = useStyles();
+export default function Authentification() {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -19,7 +13,9 @@ export default function CenteredTabs() {
     };
 
     return (
-        <Paper className={classes.root}>
+
+        <div className={styles.container}>
+
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -27,10 +23,12 @@ export default function CenteredTabs() {
                 textColor="primary"
                 centered
             >
-                <Tab label="Item One" />
-                <Tab label="Item Two" />
-                <Tab label="Item Three" />
+                <Tab label="Login"/>
+                <Tab label="Registration"/>
             </Tabs>
-        </Paper>
+            {value ? <Registration/> : <Login/>}
+
+        </div>
+
     );
 }

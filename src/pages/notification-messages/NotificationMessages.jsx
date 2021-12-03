@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import styles from './NotificationMessages.module.scss';
 import {NotificationContext} from "../../context/notificationContext";
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 
 
 const NotificationMessages = () => {
