@@ -7,6 +7,7 @@ import {Button, LinearProgress, CircularProgress} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 // import loginAPI from './login.api';
 // import { encrypt } from '../../../helpers/crypto/crypto';
+import { loginApi } from "../../services/login";
 
 
 export default function Login() {
@@ -27,8 +28,8 @@ export default function Login() {
         password: Yup.string().required('Please enter password'),
     });
 
-    const onSubmitHandler = async () => {
-        console.log("onSubmitHandler")
+    const onSubmitHandler = async (body) => {
+        await loginApi(body);
     };
 
 

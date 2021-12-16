@@ -18,20 +18,27 @@ import Typography from '@mui/material/Typography';
 import {NavLink, useLocation, Link} from 'react-router-dom'
 import {
     Person, Message, People,
-    Image, Movie
+    Image, Movie, Logout
 } from '@mui/icons-material';
 import Routes from "./../../pages/routes/Routes"
 import Header from "../header/Header";
 
 const drawerWidth = 240;
 
-function ResponsiveDrawer(props) {
+
+
+function LeftNavBar(props) {
     const {pathname} = useLocation();
     const {window} = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const logOutHandler = () => {
+        localStorage.removeItem("token")
+        props.setIsLogIn(false);
     };
 
     const drawer = (
@@ -95,6 +102,13 @@ function ResponsiveDrawer(props) {
                 </NavLink>
 
             </List>
+            <Divider/>
+            <ListItem
+                onClick={logOutHandler}
+                button>
+                <ListItemIcon><Logout/> </ListItemIcon>
+                <ListItemText primary="Log out"/>
+            </ListItem>
         </div>
     );
 
@@ -173,7 +187,7 @@ function ResponsiveDrawer(props) {
     );
 }
 
-ResponsiveDrawer.propTypes = {
+LeftNavBar.propTypes = {
     /**
      * Injected by the documentation to work in an iframe.
      * You won't need it on your project.
@@ -181,7 +195,7 @@ ResponsiveDrawer.propTypes = {
     window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+export default LeftNavBar;
 
 
 // import React from 'react';

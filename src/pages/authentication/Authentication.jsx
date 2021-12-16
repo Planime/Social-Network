@@ -5,7 +5,7 @@ import {Login, Registration} from "../../components";
 import styles from './Authentication.module.scss';
 
 
-export default function Authentification() {
+export default function Authentification({setIsLogIn}) {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -26,7 +26,10 @@ export default function Authentification() {
                 <Tab label="Login"/>
                 <Tab label="Registration"/>
             </Tabs>
-            {value ? <Registration/> : <Login/>}
+            {value ?
+                <Registration setIsLogIn={setIsLogIn}/>
+                :
+                <Login setIsLogIn={setIsLogIn}/>}
 
         </div>
 

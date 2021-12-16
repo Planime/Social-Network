@@ -10,7 +10,7 @@ import SendIcon from '@mui/icons-material/Send';
 import {registrationApi} from "../../services/registration";
 
 
-export default function Registration() {
+export default function Registration({setIsLogIn}) {
 
 
     // State
@@ -36,12 +36,14 @@ export default function Registration() {
 
     const onSubmitHandler = async (body) => {
 
-        console.log(body)
+       const resp = await registrationApi(body);
 
-        registrationApi(body);
+        if (resp) {
+            console.log("Hey I am here")
+            setIsLogIn(true);
+        }
 
     };
-
 
     return (
         <div style={{margin: '15px 0'}}>
