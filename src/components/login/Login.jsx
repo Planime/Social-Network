@@ -7,11 +7,15 @@ import {Button, LinearProgress, CircularProgress} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 // import loginAPI from './login.api';
 // import { encrypt } from '../../../helpers/crypto/crypto';
-import { loginApi } from "../../services/login";
+import {loginApi} from "../../services/login";
+import {getProfileAction} from "../../store/actions/profile";
+import {signInAction} from "../../store/actions/session";
+import {useDispatch} from "react-redux";
 
 
 export default function Login() {
 
+    const dispatch = useDispatch();
 
     // State
     const [isFetching, setIsFetching] = useState(false);
@@ -29,7 +33,8 @@ export default function Login() {
     });
 
     const onSubmitHandler = async (body) => {
-        await loginApi(body);
+        dispatch(signInAction(body));
+        dispatch(getProfileAction())
     };
 
 

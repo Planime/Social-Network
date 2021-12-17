@@ -7,15 +7,16 @@ import {
 } from "../../pages";
 import {NotificationContext} from "../../context/notificationContext";
 import {useCookies} from 'react-cookie';
-import {profileSelector} from "../../store/selectors";
-import setLogin from "../../store/reducers/profile";
+import {sessionSelector} from "../../store/selectors";
+import {setIsLogin} from "../../store/reducers/session";
 
 
 import styles from './Main.module.scss';
+import {getProfileAction} from "../../store/actions/profile";
 
 
 const Main = () => {
-const profile = useSelector(profileSelector);
+const session = useSelector(sessionSelector);
 const dispatch = useDispatch();
 
     // console.log(cookies.token, "cookies")
@@ -23,14 +24,16 @@ const dispatch = useDispatch();
     useLayoutEffect(() => {
         // setIsLogIn(!!cookies.token);
         if(localStorage.getItem("token")) {
-            dispatch(setLogin())
+            dispatch(setIsLogin());
+            dispatch(getProfileAction())
+
         }
     });
 
     return (
         <>
             {
-                profile.isLogin ? <LeftNavBar /> : <Authentication />
+                session.isLogin ? <LeftNavBar /> : <Authentication />
             }
 
         </>
