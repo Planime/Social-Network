@@ -34,7 +34,6 @@ export default function Login() {
 
     const onSubmitHandler = async (body) => {
         dispatch(signInAction(body));
-        dispatch(getProfileAction())
     };
 
 

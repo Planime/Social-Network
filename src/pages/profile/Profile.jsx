@@ -1,14 +1,21 @@
 import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import makeStyles from '@mui/styles/makeStyles';
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Chip from "@mui/material/Chip";
+import {profileSelector} from "../../store/selectors";
+import {DropzoneArea} from 'material-ui-dropzone';
+// import {useForm, Controller} from 'react-hook-form';
+// import {yupResolver} from '@hookform/resolvers';
+import * as yup from 'yup';
+import {toast} from "react-toastify";
+import {uploadAvatarProfileAction} from "../../store/actions/profile";
 
-const useStyles = makeStyles((theme) => ({
-    avatar: {
-    },
+const useStyles = makeStyles(() => ({
+    avatar: {},
     profileImage: {
         width: "20%",
         borderRadius: "100%"
@@ -32,34 +39,67 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function editProfile() {
-    console.log("edit profile")
-}
-
-
 export default function Profile() {
     const classes = useStyles();
+    const profile = useSelector(profileSelector);
+    const [file, setFiles] = useState([]);
+    const dispatch = useDispatch()
 
-    const [user, setUser] = useState({});
+    const onSubmit = () => {
+        const formData = new FormData();
 
-    useEffect(() => {
-        fetch("https://6165197809a29d0017c88f59.mockapi.io/friends/1")
-            .then(res => res.json())
-            .then(setUser);
-    }, []);
+        formData.append('avatar', file);
 
+        dispatch(uploadAvatarProfileAction(formData))
+    }
+
+    const onChangeHandler = (e) => {
+        const files = e.target.files;
+
+        if (!!files?.length) {
+            if (files[0].size > 1000000) {
+                toast.error('invalid file size');
+                return
+            }
+
+            setFiles(files[0])
+        }
+    }
 
     return (
         <React.Fragment>
+
+
             <div container>
                 <img
                     className={classes.profileImage}
-                    alt="Robert"
-                    src={user.avatar}
+                    alt="avatar"
+                    src={profile.avatar}
                 />
+
+                <form
+                    onSubmit={onSubmit}
+                    noValidate>
+
+                    <input
+                        type="file"
+                        onChange={onChangeHandler}
+                        accept={'.jpg,.png,.gif,.jpeg'}
+                    />
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={!file.length}
+                    >
+                        Upload photo
+                    </Button>
+                </form>
+
+
                 <div className={classes.content}>
                     <Typography component="h1" variant="h4">
-                        {user.lastName} {user.firstName}
+                        {profile.lastName} {profile.firstName}
                     </Typography>
                     <p>Director</p>
                     <Link to="/profile/edit">
@@ -83,7 +123,7 @@ export default function Profile() {
                             About Me:
                         </Typography>
                         <p>
-                            {user.aboutMe}
+                            {profile.aboutMe}
                         </p>
                     </div>
                     <div className={classes.about}>

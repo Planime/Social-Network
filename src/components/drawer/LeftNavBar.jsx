@@ -22,6 +22,11 @@ import {
 } from '@mui/icons-material';
 import Routes from "./../../pages/routes/Routes"
 import Header from "../header/Header";
+import {logOut} from "../../store/reducers/session";
+import {useDispatch} from "react-redux";
+import {resetProfile} from "../../store/reducers/profile";
+
+
 
 const drawerWidth = 240;
 
@@ -32,13 +37,16 @@ function LeftNavBar(props) {
     const {window} = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
+    const dispatch = useDispatch();
+
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
     const logOutHandler = () => {
         localStorage.removeItem("token")
-        props.setIsLogIn(false);
+        dispatch(logOut());
+        dispatch(resetProfile());
     };
 
     const drawer = (

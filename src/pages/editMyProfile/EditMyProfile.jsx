@@ -3,7 +3,16 @@ import Typography from "@mui/material/Typography";
 import makeStyles from '@mui/styles/makeStyles';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
-import {NotificationContext} from "../../context/notificationContext";
+import {useSelector, useDispatch} from "react-redux";
+import {profileSelector} from "../../store/selectors";
+import {editProfileAction} from "../../store/actions/profile";
+// import Grid from '@mui/material/Grid';
+// import { DropzoneArea } from 'material-ui-dropzone';
+// import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as yup from 'yup';
+
+
 
 const useStyles = makeStyles((theme) => ({
     // avatar: {
@@ -33,17 +42,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+// const schema = yup.object().shape({
+//     image: yup.array().required()
+// });
+
+
 export default function EditMyProfile() {
+    const dispatch = useDispatch();
     const classes = useStyles();
-    const {setNotificationMessages} = useContext(NotificationContext);
+    const profile = useSelector(profileSelector);
 
-    useEffect(() => {
-        fetch(`https://6165197809a29d0017c88f59.mockapi.io/friends/1`)
-            .then(res => res.json())
-            .then(setEditPatientDataForm)
-    }, []);
 
-    const [editPatientDataForm, setEditPatientDataForm] = useState({});
+
+    // const { control, handleSubmit, formState } = useForm<FormData>({
+    //     resolver: yupResolver(schema),
+    //     defaultValues: {}
+    // });
+
+
+    const [editPatientDataForm, setEditPatientDataForm] = useState({
+        lastName: profile.lastName,
+        firstName: profile.firstName,
+        gender: profile.gender,
+        aboutMe: profile.aboutMe,
+        currentCity: profile.currentCity,
+        avatar: profile.avatar,
+        work: profile.work
+    });
 
     function onChangeFormHandler(e) {
         setEditPatientDataForm((prevState) => {
@@ -57,23 +82,7 @@ export default function EditMyProfile() {
 
     function onSubmitForm(e) {
         e.preventDefault();
-        fetch(`https://6165197809a29d0017c88f59.mockapi.io/friends/${editPatientDataForm.id}`,
-            {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(editPatientDataForm)
-            })
-            .then(res => res.json())
-            .then((res) => console.log(res))
-
-            // .then(() => {
-            //     setNotificationMessages({type: 'success', text: ' Where is my text'});
-            // })
-            // .catch(() => {
-            //     setNotificationMessages({type: 'error', text: ' Where is my text'});
-            // })
+        dispatch(editProfileAction(editPatientDataForm))
     }
 
 
@@ -87,6 +96,8 @@ export default function EditMyProfile() {
                     alt="profile photo"
                     src={editPatientDataForm.avatar}
                 />
+
+
                 <div className={classes.content}>
                     <Typography component="h1" variant="h4">
                         {editPatientDataForm.lastName} {editPatientDataForm.firstName}

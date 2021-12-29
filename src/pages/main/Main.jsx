@@ -25,7 +25,8 @@ const dispatch = useDispatch();
         // setIsLogIn(!!cookies.token);
         if(localStorage.getItem("token")) {
             dispatch(setIsLogin());
-            dispatch(getProfileAction())
+
+          dispatch(getProfileAction())
 
         }
     });
