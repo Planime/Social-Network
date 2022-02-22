@@ -14,6 +14,7 @@ export const getProfileAction = createAsyncThunk(
 export const editProfileAction = createAsyncThunk(
     'profile/editProfile',
     async (body) => {
+        console.log("body", body)
         const response = await editProfileApi(body);
         // The value we return becomes the `fulfilled` action payload
         return response.data;

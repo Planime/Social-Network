@@ -42,10 +42,11 @@ const useStyles = makeStyles(() => ({
 export default function Profile() {
     const classes = useStyles();
     const profile = useSelector(profileSelector);
-    const [file, setFiles] = useState([]);
+    const [file, setFiles] = useState(null);
     const dispatch = useDispatch()
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         const formData = new FormData();
 
         formData.append('avatar', file);
@@ -77,6 +78,8 @@ export default function Profile() {
                     src={profile.avatar}
                 />
 
+
+                {/*Upload button*/}
                 <form
                     onSubmit={onSubmit}
                     noValidate>
@@ -90,7 +93,7 @@ export default function Profile() {
                         type="submit"
                         variant="contained"
                         color="primary"
-                        disabled={!file.length}
+                        disabled={!file}
                     >
                         Upload photo
                     </Button>
@@ -130,13 +133,13 @@ export default function Profile() {
                         <Typography component="h3" variant="h6">
                             My Intro:
                         </Typography>
-                        <p>Gender: Male
+                        <p>Gender: {profile.gender}
                         </p>
-                        <p>Current City: Sacramento city
+                        <p>Current City: {profile.currentCity}
                         </p>
-                        <p>Work: Software engineer at SMUD
+                        <p>Work: {profile.work}
                         </p>
-                        <p>Marital status: Married
+                        <p>Marital status: {profile.maritalStatus}
                         </p>
                     </div>
 

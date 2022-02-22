@@ -83,8 +83,8 @@ export default function FriendInfo({id}) {
                         </Typography>
                         <p>Gender: {friendData.gender}</p>
                         <p>Current City: {friendData.city}, {friendData.state}</p>
-                        <p>Work: {friendData.jobTitle}</p>
-                        <p>Marital status: Married
+                        <p>Work: {friendData.work}</p>
+                        <p>Marital status: {friendData.maritalStatus || ""}
                         </p>
                     </div>
 

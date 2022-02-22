@@ -11,6 +11,16 @@ export async function getProfileApi() {
         return false;
     }
 }
+export async function getAllProfilesApi() {
+    try {
+        const response = await api.get("profiles");
+        return response;
+    }
+    catch (e) {
+        toast.error('Error loading profiles');
+        return false;
+    }
+}
 
 
 export async function editProfileApi(body) {
@@ -28,7 +38,7 @@ export async function uploadAvatarProfileApi(formData) {
 
 
     try {
-        const response = await api.post("profile/avatar", formData);
+        const response = await api.put("profile/avatar", formData);
         return response;
     }
     catch (e) {

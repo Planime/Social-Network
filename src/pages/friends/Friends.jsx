@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from "react";
 import makeStyles from '@mui/styles/makeStyles';
 import {Link, useRouteMatch} from "react-router-dom";
-import {FriendInfo} from "../../components"
+import {FriendInfo, MyFriends, FindFriends} from "../../components"
+import Box from '@mui/material/Box';
 import contacts from "./contacs"
 import Avatar from '@mui/material/Avatar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 
 const useStyles = makeStyles(() => ({
@@ -49,52 +52,39 @@ function createData(name, calories, fat, carbs, protein) {
     return {name, calories, fat, carbs, protein};
 }
 
+
 export default function Friends() {
     const classes = useStyles();
-    const match = useRouteMatch();
-    console.log(match)
-
-    const [friends, setFriends] = useState([]);
+    const [value, setValue] = React.useState(0);
 
 
-    useEffect(() => {
-        fetch("https://6165197809a29d0017c88f59.mockapi.io/friends")
-            .then(res => res.json())
-            .then(setFriends);
-    }, []);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
 
-    if (match.isExact && match.params.id) {
+
         return (
-            <FriendInfo
-                id={match.params.id}
-            />
-        )
 
-    }
-    else {
-        return (
-            <React.Fragment>
-                <div>
-                    <h3 className="heading">My Friends</h3>
+            <Box sx={{width: '100%', bgcolor: 'background.paper'}}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                >
+                    <Tab label="My Friends"/>
+                    <Tab label="Find Friends"/>
+                </Tabs>
 
-                    {friends.map(friend => {
-                        return (
-                            <div
-                                id={friend.id}
-                                className="card_wrap">
-                                <Link to={`friends/${friend.id}`}>
-                                    <Avatar alt="Avatar"
-                                            src={friend.avatar} className={classes.large}/>
-                                    <h5>{friend.lastName} {friend.firstName}</h5>
-                                </Link>
-                            </div>
-                        )
-                    })}
+                {
+                    value === 0 && <MyFriends/>
+                }
 
+                {
+                    value === 1 && <FindFriends/>
+                }
 
-                </div>
-            </React.Fragment>
+            </Box>
+
         );
-    }
+
 }

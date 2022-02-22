@@ -67,7 +67,8 @@ export default function EditMyProfile() {
         aboutMe: profile.aboutMe,
         currentCity: profile.currentCity,
         avatar: profile.avatar,
-        work: profile.work
+        work: profile.work,
+        maritalStatus: profile.maritalStatus
     });
 
     function onChangeFormHandler(e) {
@@ -217,7 +218,7 @@ export default function EditMyProfile() {
                                 variant="outlined"
                                 value="Marital Status:"
                                 disabled
-                                onChange={onChangeFormHandler}
+                                // onChange={onChangeFormHandler}
                                 SelectProps={{
                                     native: true,
                                 }}
@@ -234,9 +235,9 @@ export default function EditMyProfile() {
                                     native: true,
                                 }}
                             >
-                                <option value="male">Single</option>
-                                <option value="female">Married</option>
-                                <option value="other">Divorced</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="divorced">Divorced</option>
                                 ))
                             </TextField>
                         </p>

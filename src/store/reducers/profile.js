@@ -34,6 +34,8 @@ export const profileSlice = createSlice({
                 state.work = action.payload.work;
                 state.currentCity = action.payload.currentCity;
                 state.aboutMe = action.payload.aboutMe;
+                state.gender = action.payload.gender;
+                state.maritalStatus = action.payload.maritalStatus;
             })
             .addCase(editProfileAction.pending, (state) => {
                 state.isLoading = true;
@@ -48,6 +50,8 @@ export const profileSlice = createSlice({
                 state.work = action.payload.work;
                 state.currentCity = action.payload.currentCity;
                 state.aboutMe = action.payload.aboutMe;
+                state.gender = action.payload.gender;
+                state.maritalStatus = action.payload.maritalStatus;
             })
             .addCase(uploadAvatarProfileAction.fulfilled, (state, action) => {
                 state.avatar = action.payload
